@@ -1,5 +1,9 @@
 <script setup>
-import { formatCurrency } from '@/helpers';
+import { useCartStore } from '../stores/cart';
+import { formatCurrency } from '../helpers';
+
+    const cart = useCartStore()
+
 defineProps({
   item: {
     type: Object,
@@ -22,7 +26,7 @@ defineProps({
       <select
       class="w-32  p-2 rounded-lg bg-white">
 
-        <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
+      <option v-for="n in cart.checkProductAvailability(item)" :key="n" :value="n">{{ n }}</option>
       
     </select>
 
