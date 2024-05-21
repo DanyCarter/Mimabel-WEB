@@ -24,7 +24,9 @@ defineProps({
       <p>{{ formatCurrency(item.price) }}</p>
 
       <select
-      class="w-32  p-2 rounded-lg bg-white">
+      class="w-32  p-2 rounded-lg bg-white"
+      @change="cart.updateQuantity(item.id, +$event.target.value)"
+      >
 
       <option v-for="n in cart.checkProductAvailability(item)" :key="n" :value="n">{{ n }}</option>
       
