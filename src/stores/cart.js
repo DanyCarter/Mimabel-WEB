@@ -1,8 +1,10 @@
 import { ref, computed, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
+import { useCouponStore } from './coupons'
 
 export const useCartStore = defineStore('cart', () => {
 
+    const coupon = useCouponStore()
     const items = ref([])
     const subtotal= ref (0)
     const taxes = ref(0)
@@ -14,37 +16,37 @@ export const useCartStore = defineStore('cart', () => {
     watchEffect(() => {
         subtotal.value = items.value.reduce((total, item) => total + (item.quantity * item.price), 0)
         taxes.value = subtotal.value * TAX_RATE
-        total.value = subtotal.value + taxes.value 
+        total.value = subtotal.value + taxes.value - parseFloat(coupon.discount)
     })
 
     function addItem(item) {
         const index = isItemInCart(item.id)
-        /* Primero nos aseguramos que ese item existe en nuestro carrito */
+        // Primero nos aseguramos de que ese item existe en nuestro carrito
         if(index >= 0 ) {
-            /* Si alcanza el limite de items que hay en stock */
+            // Si alcanza el límite de items que hay en stock
             if(isProductAvailable(item, index)) {
-                alert('Has alcanzado el limite!')
+                alert('¡Has alcanzado el límite!')
                 return
             }
-            /* Actualizamos la cantidad */
+            // Actualizamos la cantidad
             items.value[index].quantity++
-             /* Si lo ponemos con .index tratara de entrar como un objeto, [] para que sea la posicion y se inyecte dinamicamente*/
+            // Usamos notación de corchetes [] para actualizar dinámicamente la cantidad en la posición correcta
         } else {
             items.value.push({...item, quantity: 1, id: item.id})
         }
     }
 
     function updateQuantity(id, quantity) {
-        items.value = items.value.map( item => item.id === id ? {...item, quantity} : item )
+        items.value = items.value.map(item => item.id === id ? {...item, quantity} : item)
     }
 
     function removeItem(id) {
         items.value = items.value.filter(item => item.id !== id)
     }
 
-    const isItemInCart = id => items.value.findIndex(item => item.id === id )
+    const isItemInCart = id => items.value.findIndex(item => item.id === id)
 
-    const isProductAvailable = (item, index ) => {
+    const isProductAvailable = (item, index) => {
         return items.value[index].quantity >= item.availability || items.value[index].quantity >= MAX_PRODUCTS
     }
 

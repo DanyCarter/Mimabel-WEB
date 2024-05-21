@@ -49,6 +49,7 @@ defineProps({
       <button
         type="button"
         @click="products.deleteProduct(product.id)"
+        class="flex items-center justify-center h-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

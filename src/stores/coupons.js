@@ -1,4 +1,4 @@
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useCartStore } from './cart'
 
@@ -15,34 +15,35 @@ export const useCouponStore = defineStore('coupon', () => {
     ]
 
     watchEffect(() => {
-        discount.value = (cart.total * discountPercentage.value).toFixed(2)
+        discount.value = (cart.subtotal * discountPercentage.value).toFixed(2)
     })
 
     function applyCoupon() {
         if (VALID_COUPONS.some(coupon => coupon.name === couponInput.value)) {
-            couponValidationMessage.value = 'Aplicando cupon...'
+            couponValidationMessage.value = 'Aplicando cupón...'
 
             setTimeout(() => {
                 discountPercentage.value = VALID_COUPONS.find(coupon => coupon.name === couponInput.value).discount
-                couponValidationMessage.value = 'Descuento Aplicado!'
-            },3000);
+                couponValidationMessage.value = '¡Descuento Aplicado!'
+            }, 3000)
 
         } else {
-            couponValidationMessage.value = 'No existe ese cupon'
+            couponValidationMessage.value = 'No existe ese cupón'
         }
 
-        /* Para resetear mensaje despues de (5 seg) */
+        // Para resetear mensaje después de 5 segundos
         setTimeout(() => {
             couponValidationMessage.value = ''
-        }, 6000);
-
+        }, 6000)
     }
+
+    const isValidCoupon = computed (() => discountPercentage.value > 0 )
 
     return {
         couponInput,
         applyCoupon,
-        discountPercentage,
         discount,
-        couponValidationMessage
+        couponValidationMessage,
+        isValidCoupon
     }
 })
