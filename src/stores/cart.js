@@ -18,13 +18,30 @@ export const useCartStore = defineStore('cart', () => {
     })
 
     function addItem(item) {
-        items.value.push({...item, quantity: 1, id: item.id})
-
-        console.log(items.value)
+        const index = isItemInCart(item.id)
+        /* Primero nos aseguramos que ese item existe en nuestro carrito */
+        if(index >= 0 ) {
+            /* Si alcanza el limite de items que hay en stock */
+            if(isProductAvailable(item, index)) {
+                alert('Has alcanzado el limite!')
+                return
+            }
+            /* Actualizamos la cantidad */
+            items.value[index].quantity++
+             /* Si lo ponemos con .index tratara de entrar como un objeto, [] para que sea la posicion y se inyecte dinamicamente*/
+        } else {
+            items.value.push({...item, quantity: 1, id: item.id})
+        }
     }
 
     function updateQuantity(id, quantity) {
         items.value = items.value.map( item => item.id === id ? {...item, quantity} : item )
+    }
+
+    const isItemInCart = id => items.value.findIndex(item => item.id === id )
+
+    const isProductAvailable = (item, index ) => {
+        return items.value[index].quantity >= item.availability || items.value[index].quantity >= MAX_PRODUCTS
     }
 
     const isEmpty = computed(() => items.value.length === 0)
