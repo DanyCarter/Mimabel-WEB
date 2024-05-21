@@ -21,5 +21,10 @@
             @click="store.applyCoupon"
             >Canjear</button>
     </div>
+
+    <p class="py-2 text-center text-sm font-extrabold">
+        {{ store.couponValidationMessage }}
+    </p>
+
 </template>
 
