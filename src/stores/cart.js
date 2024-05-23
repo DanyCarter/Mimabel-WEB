@@ -1,6 +1,6 @@
 import { ref, computed, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, runTransaction, doc } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
 import { useCouponStore } from './coupons'
 import { getCurrentDate } from '../helpers'
@@ -53,6 +53,17 @@ export const useCartStore = defineStore('cart', () => {
                 discount: coupon.discount, // Corrección aquí
                 total: total.value,
                 date: getCurrentDate()
+            })
+
+            /* Retiramos cantidad de items vendidos */
+            items.value.forEach( async (item) => {
+                const productRef = doc(db, 'products', item.id)
+                await runTransaction(db, async (transaction) => {
+                    const currentProduct = await transaction.get(productRef)
+                    const availability = currentProduct.data().availability - item.quantity
+                    console.log(availability)
+                    transaction.update(productRef, { availability })
+                })
             })
 
             /* Reiniciamos el state */
