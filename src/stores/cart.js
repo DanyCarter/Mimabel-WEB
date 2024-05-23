@@ -34,7 +34,7 @@ export const useCartStore = defineStore('cart', () => {
         } else {
             items.value.push({...item, quantity: 1, id: item.id})
         }
-    }
+    } 
 
     function updateQuantity(id, quantity) {
         items.value = items.value.map(item => item.id === id ? {...item, quantity} : item)
