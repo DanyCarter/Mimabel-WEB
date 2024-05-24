@@ -214,12 +214,12 @@ h1 {
     z-index: 0; 
     transform: translate(-45%, -45%);
 }
-
-.circle-two {
+ 
+.circle-two { 
     bottom: 0;
     right: 0;
     transform: translate(45%, 45%);
-}
+} 
 
 .register-forget {
     margin: 1rem 0;
@@ -234,13 +234,13 @@ h1 {
 .theme-btn-container {
     position: absolute;
     left: 0;
-    bottom: 2rem;
+    bottom: 2rem; 
 }
 
 .theme-btn {
     cursor: pointer;
     transition: all 0.3s ease-in;
-}
+}  
 
 .theme-btn:hover {
     width: 40px !important;
