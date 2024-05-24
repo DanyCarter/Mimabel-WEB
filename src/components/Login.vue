@@ -1,19 +1,29 @@
 <template>
-  <div class="login-container">
-    <h1 class="login-title">Login</h1>
-    <div class="google">
-      <div class="google-button" @click="socialLogin">
-        <img class="google-icon" src="../../assets/img/MIMABEL.webp" alt="Image alt" />
-        <a class="google-word">Continue with Google</a>
+  <div class="screen">
+    <section class="container">
+      <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+        <div class="form-container">
+          <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+          <h1 class="login-title">LOGIN</h1>
+          <div class="google">
+            <div class="google-button" @click="socialLogin"></div>
+          </div>
+          <form @submit.prevent="login">
+            <input type="email" placeholder="Email address..." v-model="email" />
+            <input type="password" placeholder="Password..." v-model="password" />
+            <button type="submit">Login</button>
+            <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+          </form>
+          <div class="register-forget opacity">
+            <router-link to="/register">REGISTER</router-link>
+            <button @click="goBack">VOLVER</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <p class="or-separator">OR</p>
-    <form @submit.prevent="login" class="login-child">
-      <input type="email" placeholder="Email address..." v-model="email" />
-      <input type="password" placeholder="Password..." v-model="password" />
-      <button type="submit">Login</button>
-      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-    </form>
+      <div class="theme-btn-container"></div>
+    </section>
   </div>
 </template>
 
@@ -36,16 +46,12 @@ export default {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
         const user = userCredential.user;
-
-        // Obtener el rol del usuario desde Firestore
         const docSnap = await getDoc(doc(db, 'users', user.uid));
         if (docSnap.exists()) {
           const userData = docSnap.data();
           if (userData.role === 'admin') {
-            // Redirigir a la página de administración
             router.push('/admin/productos');
           } else {
-            // Redirigir a la página principal
             router.push('/');
           }
         }
@@ -59,16 +65,12 @@ export default {
       try {
         const userCredential = await signInWithPopup(auth, provider);
         const user = userCredential.user;
-
-        // Obtener el rol del usuario desde Firestore
         const docSnap = await getDoc(doc(db, 'users', user.uid));
         if (docSnap.exists()) {
           const userData = docSnap.data();
           if (userData.role === 'admin') {
-            // Redirigir a la página de administración
             router.push('/admin/productos');
           } else {
-            // Redirigir a la página principal
             router.push('/');
           }
         }
@@ -77,69 +79,185 @@ export default {
       }
     };
 
+    const goBack = () => {
+      router.push('/');
+    };
+
     return {
       email,
       password,
       errorMessage,
       login,
-      socialLogin
+      socialLogin,
+      goBack
     };
   }
 };
 </script>
 
-<style scoped>
+<style>
+:root {
+    --background: #2c2c47;
+    --color: #ffffff;
+    --primary-color: #14519b;
+}
+
+.screen {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+    background: var(--background);
+    color: var(--color);
+    letter-spacing: 1px;
+    transition: background 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .login-container {
-  max-width: 100%;
-  margin-top: 80px;
+    position: relative;
+    width: 22.2rem;
 }
-.login-child {
-  max-width: 300px;
-  display: block;
-  margin: 0 auto 0 auto;
+
+.form-container {
+    border: 1px solid hsla(0, 0%, 65%, 0.158);
+    box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    z-index: 2;
+    padding: 2rem;
 }
-input {
-  width: 200px;
-  height: 25px;
-  margin-bottom: 10px;
-  padding-left: 10px;
+
+.login-container form input {
+    display: block;
+    padding: 14.5px;
+    width: 100%;
+    margin: 2rem 0;
+    color: var(--color);
+    outline: none;
+    background-color: #9191911f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px);
 }
-input:focus {
-    outline: none !important;
-    border:2px solid #F8874F;
+
+.login-container form input:focus {
+    box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
+    animation: wobble 0.3s ease-in;
 }
-button {
-  margin-top: 10px;
-  width: 216px;
-  height: 25px;
-  cursor: pointer;
+
+.login-container form button {
+    background-color: var(--primary-color);
+    color: var(--color);
+    display: block;
+    padding: 13px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: all 0.1s ease-in-out;
+    border: none;
 }
-.google {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
+
+.login-container form button:hover {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
 }
-.google-button {
-  height: 30px;
-  flex-wrap: wrap;
-  border-radius: 5px;
-  background-color: #eee;
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 10px;
-  width: 207px;
+
+.circle {
+    width: 8rem;
+    height: 8rem;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    z-index: 0;
 }
-.google-icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 30px;
-  margin-top: 5px;
+
+.illustration {
+    position: absolute;
+    top: -14%;
+    right: -2px;
+    width: 90%;
 }
-.google-word {
-  margin-left: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #000;
-  margin-top: 6px;
+
+.circle-one {
+    top: 0;
+    left: 0;
+    z-index: 0; 
+    transform: translate(-45%, -45%);
+}
+
+.circle-two {
+    bottom: 0;
+    right: 0;
+    transform: translate(45%, 45%);
+}
+
+.register-forget {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opacity {
+    opacity: 0.6;
+}
+
+.theme-btn-container {
+    position: absolute;
+    left: 0;
+    bottom: 2rem;
+}
+
+.theme-btn {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.theme-btn:hover {
+    width: 40px !important;
+}
+
+@keyframes wobble {
+    0% {
+        transform: scale(1.025);
+    }
+    25% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.025);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 </style>
