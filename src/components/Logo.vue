@@ -1,7 +1,8 @@
 <template>
-    <h1 class="text-3xl font-black text-white">
-        POS
-        <span class="text-green-400">Vue.js</span>
-    </h1>
-
-</template>
+    <img :src="logo" alt="Logo" class="h-16 w-auto rounded-full" />
+  </template>
+  
+  <script setup>
+  import logo from '../assets/img/MIMABEL.webp';
+  </script>
+  

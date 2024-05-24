@@ -50,7 +50,7 @@ export const useCartStore = defineStore('cart', () => {
                 items: items.value,
                 subtotal: subtotal.value,
                 taxes: taxes.value,
-                discount: coupon.discount, // Corrección aquí
+                discount: coupon.discount, 
                 total: total.value,
                 date: getCurrentDate()
             })
@@ -71,7 +71,7 @@ export const useCartStore = defineStore('cart', () => {
             coupon.$reset()
 
         } catch (error) {
-            console.error('Error al crear la venta:', error) // Corrección aquí
+            console.error('Error al crear la venta:', error) 
         }
     }
 

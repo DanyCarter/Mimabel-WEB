@@ -13,8 +13,11 @@ export const useProductsStore = defineStore('products', () => {
 
     const categories = [
         { id: 1, name: 'Sudaderas'},
-        { id: 2, name: 'Tenis'},
-        { id: 3, name: 'Lentes'},
+        { id: 2, name: 'Zapatillas'},
+        { id: 3, name: 'Gafas'},
+        { id: 4, name: 'Camisetas'},
+        { id: 5, name: 'Bañadores'},
+        { id: 6, name: 'Calcetines'},
     ]
     
     const q = query( 
