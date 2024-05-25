@@ -1,7 +1,6 @@
 <template>
 <MainNav :showButtons="false" />
   <div class="full-page">
-    <header class="px-10 py-5 bg-gray-700 flex justify-between w-full z-10"></header>
     <div class="wrapper">
       <h2 class="register-title">Register</h2>
     
@@ -120,7 +119,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 * {
   margin: 0;
@@ -129,7 +128,7 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 body {
-  background: #fff; /* Fondo blanco */
+  background: #ebebec; /* Fondo blanco */
 }
 .full-page {
   min-height: 100vh;
