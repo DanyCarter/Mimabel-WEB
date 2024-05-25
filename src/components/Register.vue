@@ -1,22 +1,32 @@
 <template>
-  <header class="px-10 py-5 bg-gray-700 flex justify-between absolute top-0 w-full z-10"></header>
-  <div class="register-container">
-    <h1 class="register-title">Register</h1>
-    <div class="google">
-      <div class="google-button" @click="socialLogin">
-        <img class="google-icon" src="../../assets/img/MIMABEL.webp" alt="Image alt" />
-        <a class="google-word">Continue with Google</a>
-      </div>
+<MainNav :showButtons="false" />
+  <div class="full-page">
+    <header class="px-10 py-5 bg-gray-700 flex justify-between w-full z-10"></header>
+    <div class="wrapper">
+      <h2 class="register-title">Register</h2>
+    
+      <form @submit.prevent="register">
+        <div class="input-box">
+          <input type="text" placeholder="Nombre" v-model="firstName" required />
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Apellidos" v-model="lastName" required />
+        </div>
+        <div class="input-box">
+          <input type="email" placeholder="Correo electronico..." v-model="email" required />
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Constraseña..." v-model="password" required />
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Ubicacion" v-model="location" required />
+        </div>
+        <div class="input-box button">
+          <input type="submit" value="Register" />
+        </div>
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </form>
     </div>
-    <p>OR</p>
-    <form @submit.prevent="register" class="register-child">
-      <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
-      <input type="email" placeholder="Email address..." v-model="email" />
-      <input type="password" placeholder="Password..." v-model="password" />
-      <button type="submit">Register</button>
-      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-    </form>
   </div>
 </template>
 
@@ -25,14 +35,21 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase'; // Importa auth y db
+import { auth, db } from '../config/firebase';
+import MainNav from './MainNav.vue'; 
 
 export default {
+
+  components: {
+    MainNav,
+  },
+
   setup() {
     const firstName = ref('');
     const lastName = ref('');
     const email = ref('');
     const password = ref('');
+    const location = ref(''); 
     const errorMessage = ref('');
     const router = useRouter();
 
@@ -52,6 +69,7 @@ export default {
           firstName: firstName.value,
           lastName: lastName.value,
           email: email.value,
+          location: location.value, // Añadido la ubicación a los datos del usuario
           role: role,
           createdAt: new Date(),
         });
@@ -75,8 +93,8 @@ export default {
         const role = user.email === 'admin@example.com' ? 'admin' : 'user';
 
         await setDoc(doc(db, 'users', user.uid), {
-          firstName: '',  // Asigna un valor adecuado si es necesario
-          lastName: '',   // Asigna un valor adecuado si es necesario
+          firstName: '',
+          lastName: '',
           email: user.email,
           role: role,
           createdAt: new Date(),
@@ -93,6 +111,7 @@ export default {
       lastName,
       email,
       password,
+      location, // Añadido a los valores retornados
       errorMessage,
       register,
       socialLogin,
@@ -101,106 +120,85 @@ export default {
 };
 </script>
 
-
 <style scoped>
-/* Estilos generales */
-body {
-  background-color: #f0f0f0; /* Gris claro */
-  color: #333; /* Gris oscuro */
-  font-family: 'Arial', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-
-/* Estilos para el contenedor principal del login */
-.login-container {
+body {
+  background: #fff; /* Fondo blanco */
+}
+.full-page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f0f0f0; /* Gris claro */
 }
-
-/* Título del login */
-.login-title {
-  font-size: 2em;
-  color: #1a73e8; /* Azul */
-  margin-bottom: 20px;
-}
-
-/* Estilos para el botón de Google */
-.google {
-  margin-bottom: 20px;
-}
-
-.google-button {
-  display: flex;
-  align-items: center;
-  background-color: #4285f4;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.google-button:hover {
-  background-color: #357ae8;
-}
-
-.google-icon {
-  width: 20px;
-  margin-right: 10px;
-}
-
-.google-word {
-  font-size: 1em;
-}
-
-/* Separador OR */
-.or-separator {
-  margin: 20px 0;
-  font-size: 1em;
-  color: #888;
-}
-
-/* Estilos para el formulario de login */
-.login-child {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-}
-
-.login-child input {
-  margin-bottom: 10px;
-  padding: 10px;
+.wrapper {
+  position: relative;
+  max-width: 430px;
   width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1em;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2 {
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #4070f4;
 }
 
-.login-child button {
-  padding: 10px;
+.input-box {
+  height: 52px;
+  margin: 18px 0;
+}
+.input-box input {
+  height: 100%;
   width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid {
+  border-color: #4070f4;
+}
+.input-box.button input {
+  color: #fff;
+  letter-spacing: 1px;
   border: none;
-  border-radius: 5px;
-  background-color: #1a73e8; /* Azul */
-  color: white;
+  background: #4070f4;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
 }
-
-.login-child button:hover {
-  background-color: #166adf;
+.input-box.button input:hover {
+  background: #0e4bf1;
 }
-
-/* Estilos para los mensajes de error */
 .error-message {
   color: red;
   font-size: 1em;
   margin-top: 10px;
+  text-align: center;
 }
 </style>

@@ -43,7 +43,16 @@ onAuthStateChanged(auth, async user => {
 const logout = async () => {
   await signOut(auth);
 };
+
+// Definir la prop showButtons
+const props = defineProps({
+  showButtons: {
+    type: Boolean,
+    default: true,
+  },
+});
 </script>
+
 <template>
   <header
     class="px-10 py-5 bg-gray-700 flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between absolute top-0 w-full z-10"
@@ -51,7 +60,7 @@ const logout = async () => {
     <div class="flex items-center gap-5">
       <Logo />
 
-      <div class="flex gap-5 text-white items-center">
+      <div v-if="showButtons" class="flex gap-5 text-white items-center">
         <div class="flex items-center gap-4">
           <button
             v-for="category in products.categories"
@@ -79,7 +88,7 @@ const logout = async () => {
       </div>
     </div>
 
-    <nav class="flex items-center gap-4">
+    <nav v-if="showButtons" class="flex items-center gap-4">
       <p class="email" v-if="authState">{{ email }}</p>
       <RouterLink v-if="!authState" to="/register">
         <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
