@@ -5,6 +5,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useProductsStore } from '../stores/products';
 import Link from './Link.vue';
 import Logo from './Logo.vue';
+import { RouterLink } from 'vue-router'; // Importar RouterLink
 
 // Productos store
 const products = useProductsStore();
@@ -58,7 +59,9 @@ const props = defineProps({
     class="px-10 py-5 bg-gray-700 flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between absolute top-0 w-full z-10"
   >
     <div class="flex items-center gap-5">
-      <Logo />
+      <RouterLink to="/">
+        <Logo />
+      </RouterLink>
 
       <div v-if="showButtons" class="flex gap-5 text-white items-center">
         <div class="flex items-center gap-4">
@@ -89,7 +92,7 @@ const props = defineProps({
     </div>
 
     <nav v-if="showButtons" class="flex items-center gap-4">
-      <p class="email" v-if="authState">{{ email }}</p>
+      <p class="hidden" v-if="authState">{{ email }}</p>
       <RouterLink v-if="!authState" to="/register">
         <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
           Register

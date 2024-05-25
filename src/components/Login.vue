@@ -1,4 +1,5 @@
 <template>
+  <MainNav :showButtons="false" />
   <div class="screen">
     <section class="container">
       <div class="login-container">
@@ -17,8 +18,8 @@
             <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
           </form>
           <div class="register-forget opacity">
-            <router-link to="/register">REGISTER</router-link>
-            <button @click="goBack">VOLVER</button>
+            <router-link to="/register" class="register">REGISTER</router-link>
+            <button @click="goBack" class="back">VOLVER</button>
           </div>
         </div>
       </div>
@@ -32,8 +33,14 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import MainNav from './MainNav.vue'; 
 
 export default {
+
+  components: {
+    MainNav,
+  },
+
   setup() {
     const email = ref('');
     const password = ref('');
@@ -97,9 +104,11 @@ export default {
 
 <style>
 :root {
-    --background: #2c2c47;
+    --background: #ebebec;
     --color: #ffffff;
     --primary-color: #14519b;
+    --gradient-start: #ff7e5f;
+    --gradient-end: #feb47b;
 }
 
 .screen {
@@ -132,6 +141,49 @@ h1 {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.register{
+    background-color: var(--primary-color);
+    color: var(--color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.register:hover {
+    background-color: #0e3e6f;
+    transform: scale(1.05);
+}
+
+.back{
+    background-color: var(--primary-color);
+    color: var(--color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.back:hover {
+    background-color: #0e3e6f;
+    transform: scale(1.05);
+}
+
+.login-title {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .login-container {
