@@ -9,6 +9,14 @@ export default {
 };
 </script>
 <template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
   <div id="app">
     <!-- Incluir MainNav aquí -->
     <MainNav />
@@ -27,7 +35,7 @@ export default {
         <img src="../../src/assets/img/Mimabel.png" alt="Imagen Mimabel" />
       </div>
       <div class="text-container">
-        <h2>¡Bienvenidos a Mimabel!</h2>
+       <h2 class="welcome mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-10xl lg:text-7xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">¡Bienvenidos a Mimabel!</span></h2>
         <p>
           Desde hace más de 30 años, Mimabel ha sido un referente en nuestra comunidad como una tienda de confianza, ofreciendo una amplia variedad de ropa de las mejores marcas. Nuestro objetivo siempre ha sido brindar productos de alta calidad para todas las edades y estilos, asegurándonos de que cada visita a nuestra tienda sea una experiencia única y satisfactoria.
         </p>
@@ -47,9 +55,11 @@ export default {
     </section>
   </div>
 </template>
+
 <style scoped>
 body,
 html {
+  background-color: #ebebec;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -59,6 +69,35 @@ html {
 
 #app {
   width: 100%;
+}
+
+.bree-serif-regular {
+  font-family: "Bree Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.welcome {
+  font-family: Bree Serif;
+  font-weight: 80rem;
 }
 
 .fixed-video {
@@ -121,10 +160,11 @@ html {
 }
 
 .text-container p {
+  font-family: bold;
   margin-top: 1em; /* Añade margen superior para separación entre párrafos */
   line-height: 1.6; /* Aumenta el espaciado entre líneas */
-  color: #555; /* Cambia el color del texto para mayor legibilidad */
-  font-size: 1em; /* Ajusta el tamaño de la fuente */
+  color: #000000; /* Cambia el color del texto para mayor legibilidad */
+  font-size: 1.3em; /* Ajusta el tamaño de la fuente */
 }
 
 .map-section {
@@ -143,28 +183,62 @@ html {
   .text-container {
     max-width: 100%; /* Ancho completo */
     padding: 10px 0; /* Reduce el padding */
+    margin: 2em;
+  }
+
+  .text-container {
+    margin-top: 10px; /* Reduce la distancia entre la imagen y el texto */
   }
 
   .text-container h2 {
-    font-size: 1.5em; /* Reduce el tamaño de la fuente */
+    font-size: 2em; /* Reduce el tamaño de la fuente */
   }
 
   .text-container p {
-    font-size: 0.9em; /* Reduce el tamaño de la fuente */
+    font-size: 1.1em; /* Reduce el tamaño de la fuente */
+  }
+
+  .welcome {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-top: 10px; /* Reduce el margen superior */
   }
 }
 
 @media (max-width: 480px) {
   .about-us {
-    padding: 10px 5px; /* Reduce el padding aún más */
+    padding: 5px 5px; /* Reduce el padding aún más */
+  }
+
+  .text-container {
+    margin-top: 0px; /* Reduce la distancia entre la imagen y el texto aún más */
+    padding: 0 0 0;
+    margin: 1em;
   }
 
   .text-container h2 {
-    font-size: 1.2em; /* Reduce el tamaño de la fuente */
+    font-size: 1.4em; /* Reduce el tamaño de la fuente */
+    margin: 2em;
+    margin-bottom: 1em;
+
   }
 
   .text-container p {
-    font-size: 0.8em; /* Reduce el tamaño de la fuente */
+    margin: 2em;
+    margin-top: 1em;
+    font-size: 1.3em; /* Ajusta el tamaño de la fuente */
+  }
+
+  .image-container{
+    margin-bottom: 1em;
+
+  }
+
+  .welcome {
+    margin-top: 5px; /* Reduce el margen superior aún más */
   }
 }
+
 </style>
+
