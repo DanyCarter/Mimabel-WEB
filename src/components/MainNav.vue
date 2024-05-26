@@ -80,11 +80,11 @@ const menuOpen = ref(false);
 
       <!-- Botón de menú hamburguesa -->
       <div v-if="showButtons" class="movil lg:hidden">
-        <input type="checkbox" id="btn_menu" v-model="menuOpen">
-        <label for="btn_menu" class="btn_menu flex_column">
-          <span id="btn_span_1" class="btn_span"></span>
-          <span id="btn_span_2" class="btn_span"></span>
-          <span id="btn_span_3" class="btn_span"></span>
+        <input type="checkbox" id="btn_menu" v-model="menuOpen" class="menu-checkbox">
+        <label for="btn_menu" class="menu-btn">
+          <span class="menu-btn__line"></span>
+          <span class="menu-btn__line"></span>
+          <span class="menu-btn__line"></span>
         </label>
       </div>
 
@@ -121,49 +121,36 @@ const menuOpen = ref(false);
       <nav>
         <ul class="container_menu flex_column">
           <li v-for="category in products.categories" :key="category.id">
-            <button
-              :class="[
-                'py-2 px-4 rounded mx-2',
-                products.selectedCategory === category.id
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-200 text-black',
-                'hover:bg-indigo-500 transition-colors',
-              ]"
+            <RouterLink
+              :to="{ path: `/category/${category.id}` }"
+              class="menu-link"
               @click="selectCategory(category.id)"
             >
               {{ category.name }}
-            </button>
-          </li>
-          <li>
-            <RouterLink to="/conocenos">
-              <button class="py-2 px-4 rounded bg-green-500 text-white hover:bg-green-400 transition-colors mx-2">
-                Conócenos
-              </button>
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/register">
-              <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
-                Register
-              </button>
+            <RouterLink to="/conocenos" class="menu-link">
+              Conócenos
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/login">
-              <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
-                Login
-              </button>
+            <RouterLink to="/register" class="menu-link">
+              Register
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/login" class="menu-link">
+              Login
             </RouterLink>
           </li>
           <li v-if="isAdmin">
-            <RouterLink to="/admin/productos">
-              <button class="py-2 px-4 rounded bg-yellow-500 text-white hover:bg-yellow-400 transition-colors mx-2">
-                Administrar
-              </button>
+            <RouterLink to="/admin/productos" class="menu-link">
+              Administrar
             </RouterLink>
           </li>
           <li v-if="authState">
-            <button @click="logout" class="py-2 px-4 rounded bg-red-500 text-white hover:bg-red-400 transition-colors mx-2">
+            <button @click="logout" class="menu-link bg-red-500 text-white">
               Log out
             </button>
           </li>
@@ -201,21 +188,39 @@ const menuOpen = ref(false);
   position: relative;
 }
 
-#btn_menu {
+.menu-checkbox {
   display: none;
 }
 
-.btn_menu {
-  cursor: pointer;
+.menu-btn {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 10;
 }
 
-.btn_span {
-  width: 25px;
+.menu-btn__line {
+  width: 100%;
   height: 3px;
   background-color: white;
+  border-radius: 2px;
+  transition: all 0.5s ease;
+}
+
+.menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .container_flex {
@@ -229,7 +234,6 @@ const menuOpen = ref(false);
 .container_menu {
   list-style: none;
   padding: 0;
-
 }
 
 .container_menu li {
@@ -239,6 +243,29 @@ const menuOpen = ref(false);
 .container_menu li a {
   color: white;
   text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.container_menu li a:hover {
+  background-color: #3b82f6; /* Color azul para el hover */
+  color: white;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 5px 0;
+  background-color: #1f2937;
+}
+
+.menu-link:hover {
+  background-color: #4b5563;
+  color: white;
 }
 
 .flex_column {
@@ -283,52 +310,6 @@ const menuOpen = ref(false);
     display: block;
     position: relative;
     height: 64px;
-  }
-
-  #btn_menu {
-    position: absolute;
-    display: block;
-    height: 32px;
-    width: 30px;
-    top: 20px;
-    left: 20px;
-    z-index: 5;
-    opacity: 0;
-  }
-
-  .hamburger-lines {
-    display: block;
-    height: 23px;
-    width: 35px;
-    position: absolute;
-    top: 17px;
-    left: 20px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .hamburger-lines .line {
-    display: block;
-    height: 4px;
-    width: 100%;
-    border-radius: 10px;
-    background: #333;
-  }
-
-  .hamburger-lines .line1 {
-    transform-origin: 0% 0%;
-    transition: transform 0.4s ease-in-out;
-  }
-
-  .hamburger-lines .line2 {
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .hamburger-lines .line3 {
-    transform-origin: 0% 100%;
-    transition: transform 0.4s ease-in-out;
   }
 
   .menu-items {
