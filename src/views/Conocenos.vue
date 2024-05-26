@@ -33,23 +33,11 @@
         </div>
       </section>
   
-      <!-- Sección del mapa -->
-      <section class="map-section">
-        <MapComponent />
-      </section>
+    
     </div>
   </template>
   
-  <script>
-  import MapComponent from '../components/MapComponent.vue';
-  
-  export default {
-    name: 'Conocenos',
-    components: {
-      MapComponent
-    }
-  };
-  </script>
+ 
   
   <style scoped>
   body,

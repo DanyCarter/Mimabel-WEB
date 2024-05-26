@@ -36,11 +36,9 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import MainNav from './MainNav.vue'; 
 
 export default {
-
   components: {
     MainNav,
   },
-
   setup() {
     const email = ref('');
     const password = ref('');
@@ -101,6 +99,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 :root {
@@ -205,7 +204,7 @@ h1 {
     padding: 14.5px;
     width: 100%;
     margin: 2rem 0;
-    color: var(--color);
+    color: rgb(0, 0, 0);
     outline: none;
     background-color: #9191911f;
     border: none;

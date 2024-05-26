@@ -20,6 +20,7 @@
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue-tailwind-datepicker": "^1.7.3",
+    "vue2-google-maps": "^0.10.7",
     "vuefire": "^3.1.23"
   },
   "devDependencies": {
