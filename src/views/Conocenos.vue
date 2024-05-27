@@ -244,7 +244,7 @@ html {
     margin-bottom: 1em;
 
   }
-
+    
   .welcome {
     margin-top: 5px; /* Reduce el margen superior aún más */
   }
