@@ -7,7 +7,7 @@
     import { useProductsStore } from '../stores/products';
 
     const products = useProductsStore()
-    const { filteredProducts, noResults } = storeToRefs(products)
+    const { filteredProducts } = storeToRefs(products)
 </script>
 
 

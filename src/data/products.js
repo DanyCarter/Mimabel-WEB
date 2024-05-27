@@ -243,6 +243,6 @@ export const products = [
       "name": "Sudadera xxl",
       "price": 12,
       "availability": 13,
-      "category": 13
+      "category": 1
     }
   ]

@@ -35,26 +35,38 @@ onMounted(async () => {
     <div>
       <Logo />
     </div>
-    <nav>
-      <RouterLink
-        v-if="isAdmin"
-        :to="{ name: 'products' }"
-        class="rounded text-white font-bold p-2 space-x-4"
-        style="position: absolute; right: 250px;"
-      >
-        Productos    
-      </RouterLink>
-      <RouterLink
-        v-if="isAdmin"
-        :to="{ name: 'ventas' }"
-        class="rounded text-white font-bold p-2 space-x-4"
-        style="position: absolute; right: 350px;"
-      >
-        Ventas
-      </RouterLink>
-      <Link to="shop" class=" rounded text-white font-bold p-2 " style="position: absolute; right: 100px;">
-        Tienda
-      </Link>
-    </nav>
+
+    <nav class="flex items-center">
+  <RouterLink
+    v-if="isAdmin"
+    :to="{ name: 'products' }"
+    class="rounded text-white font-bold p-2 space-x-4"
+    :class="{ 'border-b-2 border-white': $route.name === 'products' }"
+    style="position: absolute; right: 250px;"
+  >
+    Productos    
+  </RouterLink>
+  <RouterLink
+    v-if="isAdmin"
+    :to="{ name: 'ventas' }"
+    class="rounded text-white font-bold p-2 space-x-4"
+    :class="{ 'border-b-2 border-white': $route.name === 'ventas' }"
+    style="position: absolute; right: 350px;"
+  >
+    Ventas
+  </RouterLink>
+  <Link
+    to="shop"
+    class="rounded text-white font-bold p-2"
+    :class="{ 'border-b-2 border-white': $route.name === 'shop' }"
+    style="position: absolute; right: 100px;"
+  >
+    Tienda
+  </Link>
+</nav>
+
+
+
+
   </header>
 </template>
