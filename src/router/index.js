@@ -66,6 +66,20 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
+  if (requiresAuth) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        next();
+      } else {
+        next('/login');
+      }
+    });
+  } else {
+    next();
+  }
+});
 
 export default router;
