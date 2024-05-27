@@ -1,27 +1,7 @@
-<script>
-import MainNav from '../components/MainNav.vue';
-
-export default {
-  name: 'Conocenos',
-  components: {
-    MainNav
-  }
-};
-</script>
 <template>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-
   <div id="app">
-    <!-- Incluir MainNav aquí -->
     <MainNav />
 
-    <!-- Sección del video fijado en la parte superior -->
     <section class="fixed-video">
       <video autoplay muted loop id="background-video">
         <source src="../../src/assets/videos/villablino.mp4" type="video/mp4" />
@@ -29,34 +9,68 @@ export default {
       </video>
     </section>
 
-    <!-- Sección de "Conócenos" -->
     <section class="about-us">
       <div class="image-container">
         <img src="../../src/assets/img/Mimabel.png" alt="Imagen Mimabel" />
       </div>
       <div class="text-container">
-       <h2 class="welcome mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-10xl lg:text-7xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">¡Bienvenidos a Mimabel!</span></h2>
+        <h2 class="welcome mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-10xl lg:text-7xl">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+            ¡Bienvenidos a Mimabel!
+          </span>
+        </h2>
         <p>
-          Desde hace más de 30 años, Mimabel ha sido un referente en nuestra comunidad como una tienda de confianza, ofreciendo una amplia variedad de ropa de las mejores marcas. Nuestro objetivo siempre ha sido brindar productos de alta calidad para todas las edades y estilos, asegurándonos de que cada visita a nuestra tienda sea una experiencia única y satisfactoria.
+          Desde hace más de 30 años, Mimabel ha sido un referente en nuestra comunidad como una tienda de confianza,
+          ofreciendo una amplia variedad de ropa de las mejores marcas. Nuestro objetivo siempre ha sido brindar productos
+          de alta calidad para todas las edades y estilos, asegurándonos de que cada visita a nuestra tienda sea una
+          experiencia única y satisfactoria.
         </p>
         <p>
-          En Mimabel, creemos que el trato con el cliente es fundamental. Nos enorgullece ofrecer una atención personalizada y cercana, donde cada persona que entra por nuestras puertas es recibida con una sonrisa y la disposición de ayudarle a encontrar exactamente lo que necesita. Estamos aquí para asesorarte y garantizar que te sientas como en casa.
+          En Mimabel, creemos que el trato con el cliente es fundamental. Nos enorgullece ofrecer una atención personalizada
+          y cercana, donde cada persona que entra por nuestras puertas es recibida con una sonrisa y la disposición de
+          ayudarle a encontrar exactamente lo que necesita. Estamos aquí para asesorarte y garantizar que te sientas como en
+          casa.
         </p>
         <p>
-          La calidad es nuestra prioridad. Seleccionamos cuidadosamente cada artículo que ofrecemos, asegurándonos de que cumpla con nuestros estándares. En Mimabel puedes confiar en que solo encontrarás lo mejor para ti y tus seres queridos.
+          La calidad es nuestra prioridad. Seleccionamos cuidadosamente cada artículo que ofrecemos, asegurándonos de que
+          cumpla con nuestros estándares. En Mimabel puedes confiar en que solo encontrarás lo mejor para ti y tus seres
+          queridos.
         </p>
         <p>
-          Te invitamos a visitarnos y descubrir todo lo que Mimabel tiene para ofrecer. Estamos seguros de que te encantará la experiencia y te convertirás en parte de nuestra familia.
+          Te invitamos a visitarnos y descubrir todo lo que Mimabel tiene para ofrecer. Estamos seguros de que te encantará
+          la experiencia y te convertirás en parte de nuestra familia.
         </p>
         <p>
           ¡Gracias por confiar en nosotros!
         </p>
       </div>
     </section>
+
+    <GoogleMap :api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="15">
+      <advanced-marker-element :position="center"></advanced-marker-element>
+    </GoogleMap>
   </div>
 </template>
 
-<style scoped>
+<script>
+import MainNav from '../components/MainNav.vue';
+import { GoogleMap } from "vue3-google-map";
+
+const YOUR_GOOGLE_MAPS_API_KEY = "AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs";
+
+export default {
+  name: 'Conocenos',
+  components: { GoogleMap, MainNav },
+  data() {
+    return {
+      center: { lat: 40.689247, lng: -111.044502 },
+      YOUR_GOOGLE_MAPS_API_KEY
+    };
+  }
+};
+</script>
+
+<!-- <style scoped>
 body,
 html {
   background-color: #ebebec;
@@ -167,10 +181,6 @@ html {
   font-size: 1.3em; /* Ajusta el tamaño de la fuente */
 }
 
-.map-section {
-  padding: 40px 20px; /* Añade padding alrededor del mapa */
-  background-color: #f4f4f4; /* Fondo para el mapa */
-}
 
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
@@ -241,4 +251,4 @@ html {
 }
 
 </style>
-
+ -->
