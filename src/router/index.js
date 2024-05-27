@@ -3,7 +3,7 @@ import ShopView from '../views/ShopView.vue';
 import AdminLayout from '../views/admin/AdminLayout.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase'; // Importa auth y db
+import { auth, db } from '../config/firebase';
 
 const routes = [
   {
@@ -15,7 +15,7 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminLayout,
-    meta: { requiresAdmin: true },
+    meta: { requiresAuth: true },
     children: [
       {
         path: 'productos',
@@ -66,32 +66,6 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-  const auth = getAuth();
-  const db = getFirestore();
 
-  const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
-
-  if (requiresAdmin) {
-    const user = auth.currentUser;
-    if (user) {
-      const docSnap = await getDoc(doc(db, 'users', user.uid));
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        if (userData.role === 'admin') {
-          next();
-        } else {
-          next('/');
-        }
-      } else {
-        next('/login');
-      }
-    } else {
-      next('/login');
-    }
-  } else {
-    next();
-  }
-});
 
 export default router;

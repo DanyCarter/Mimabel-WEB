@@ -1,5 +1,5 @@
 <template>
-<MainNav :showButtons="false" />
+  <MainNav :showButtons="false" :hideHamburger="true" />
   <div class="full-page">
     <div class="wrapper">
       <h2 class="register-title">Register</h2>
@@ -23,7 +23,11 @@
         <div class="input-box button">
           <input type="submit" value="Register" />
         </div>
-        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+        <div class="login-forget opacity">
+            <router-link to="/login" class="login">LOGIN</router-link>
+            <button @click="goBack" class="back">VOLVER</button>
+          </div>        
+          <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
       </form>
     </div>
   </div>
@@ -38,11 +42,9 @@ import { auth, db } from '../config/firebase';
 import MainNav from './MainNav.vue'; 
 
 export default {
-
   components: {
     MainNav,
   },
-
   setup() {
     const firstName = ref('');
     const lastName = ref('');
@@ -105,12 +107,18 @@ export default {
       }
     };
 
+    const goBack = () => {
+      router.push('/');
+    };
+
+
     return {
       firstName,
       lastName,
       email,
       password,
-      location, // Añadido a los valores retornados
+      location, 
+      goBack,
       errorMessage,
       register,
       socialLogin,
@@ -119,7 +127,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 * {
   margin: 0;
@@ -199,5 +207,50 @@ body {
   font-size: 1em;
   margin-top: 10px;
   text-align: center;
+}
+
+.login-forget {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opacity {
+    opacity: 0.9;
+}
+
+.login{
+    background-color: #234ac9;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    width: 122px;
+}
+
+.login:hover {
+    background-color: #08335e;
+    transform: scale(1.05);
+}
+
+.back{
+    background-color: #14519b;
+    color: #ffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.back:hover {
+    background-color: #0e3e6f;
+    transform: scale(1.05);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <MainNav :showButtons="false" />
+  <MainNav :showButtons="false" :hideHamburger="true" />
   <div class="screen">
     <section class="container">
       <div class="login-container">
@@ -59,6 +59,8 @@ export default {
           } else {
             router.push('/');
           }
+        } else {
+          errorMessage.value = 'No se encontraron datos de usuario';
         }
       } catch (error) {
         errorMessage.value = error.message;
@@ -78,6 +80,8 @@ export default {
           } else {
             router.push('/');
           }
+        } else {
+          errorMessage.value = 'No se encontraron datos de usuario';
         }
       } catch (error) {
         errorMessage.value = 'Oops. ' + error.message;
@@ -101,7 +105,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 :root {
     --background: #ebebec;
     --color: #ffffff;
@@ -114,8 +118,8 @@ export default {
     box-sizing: border-box;
     scroll-behavior: smooth;
     font-family: "Poppins", sans-serif;
-    background: var(--background);
-    color: var(--color);
+    background: #ebebec;
+    color: #ffffff;
     letter-spacing: 1px;
     transition: background 0.2s ease;
     display: flex;
@@ -128,7 +132,7 @@ export default {
 
 a {
     text-decoration: none;
-    color: var(--color);
+    color: #ffffff;
 }
 
 h1 {
@@ -143,8 +147,8 @@ h1 {
 }
 
 .register{
-    background-color: var(--primary-color);
-    color: var(--color);
+    background-color: #234ac9;
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
@@ -154,13 +158,13 @@ h1 {
 }
 
 .register:hover {
-    background-color: #0e3e6f;
+    background-color: #08335e;
     transform: scale(1.05);
 }
 
 .back{
-    background-color: var(--primary-color);
-    color: var(--color);
+    background-color: #14519b;
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
@@ -178,7 +182,7 @@ h1 {
 .login-title {
     font-size: 3rem;
     font-weight: bold;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
@@ -221,8 +225,8 @@ h1 {
 }
 
 .login-container form button {
-    background-color: var(--primary-color);
-    color: var(--color);
+    background-color: #14519b;
+    color: #ffffff;
     display: block;
     padding: 13px;
     border-radius: 5px;
@@ -279,7 +283,7 @@ h1 {
 }
 
 .opacity {
-    opacity: 0.6;
+    opacity: 0.9;
 }
 
 .theme-btn-container {

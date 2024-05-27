@@ -12,6 +12,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  hideHamburger: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // Productos store
@@ -79,8 +83,8 @@ const menuOpen = ref(false);
       </RouterLink>
 
       <!-- Botón de menú hamburguesa -->
-      <div v-if="showButtons" class="movil lg:hidden">
-        <input type="checkbox" id="btn_menu" v-model="menuOpen" class="menu-checkbox">
+      <div v-if="!props.hideHamburger && !showButtons" class="movil lg:hidden">
+        <input type="checkbox" id="btn_menu" v-model="menuOpen" class="menu-checkbox hidden">
         <label for="btn_menu" class="menu-btn">
           <span class="menu-btn__line"></span>
           <span class="menu-btn__line"></span>
@@ -121,31 +125,30 @@ const menuOpen = ref(false);
       <nav>
         <ul class="container_menu flex_column">
           <li v-for="category in products.categories" :key="category.id">
-            <RouterLink
-              :to="{ path: `/category/${category.id}` }"
+            <button
+              @click="selectCategory(category.id); menuOpen = false"
               class="menu-link"
-              @click="selectCategory(category.id)"
             >
               {{ category.name }}
-            </RouterLink>
+            </button>
           </li>
           <li>
-            <RouterLink to="/conocenos" class="menu-link">
+            <RouterLink to="/conocenos" class="menu-link" @click="menuOpen = false">
               Conócenos
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/register" class="menu-link">
+            <RouterLink to="/register" class="menu-link" @click="menuOpen = false">
               Register
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/login" class="menu-link">
+            <RouterLink to="/login" class="menu-link" @click="menuOpen = false">
               Login
             </RouterLink>
           </li>
           <li v-if="isAdmin">
-            <RouterLink to="/admin/productos" class="menu-link">
+            <RouterLink to="/admin/productos" class="menu-link" @click="menuOpen = false">
               Administrar
             </RouterLink>
           </li>
@@ -205,7 +208,7 @@ const menuOpen = ref(false);
 
 .menu-btn__line {
   width: 100%;
-  height: 3px;
+  height: 4px;
   background-color: white;
   border-radius: 2px;
   transition: all 0.5s ease;
