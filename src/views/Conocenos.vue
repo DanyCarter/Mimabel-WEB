@@ -46,29 +46,38 @@
       </div>
     </section>
 
-    <GoogleMap :api-key="YOUR_GOOGLE_MAPS_API_KEY" style="width: 100%; height: 500px" :center="center" :zoom="15">
-      <advanced-marker-element :position="center"></advanced-marker-element>
+    <GoogleMap
+      :api-key="YOUR_GOOGLE_MAPS_API_KEY"
+      style="width: 100%; height: 500px"
+      :center="center"
+      :zoom="15"
+    >
+      <Marker :position="center" />
     </GoogleMap>
   </div>
 </template>
 
 <script>
 import MainNav from '../components/MainNav.vue';
-import { GoogleMap } from "vue3-google-map";
+import { GoogleMap, Marker } from 'vue3-google-map';
 
-const YOUR_GOOGLE_MAPS_API_KEY = "AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs";
+const YOUR_GOOGLE_MAPS_API_KEY = 'AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs';
 
 export default {
   name: 'Conocenos',
-  components: { GoogleMap, MainNav },
+  components: { GoogleMap, Marker, MainNav },
   data() {
     return {
-      center: { lat: 40.689247, lng: -111.044502 },
-      YOUR_GOOGLE_MAPS_API_KEY
+      center: { lat: 42.9362, lng: -6.3202 },
+      YOUR_GOOGLE_MAPS_API_KEY,
     };
-  }
+  },
 };
 </script>
+
+<style scoped>
+/* Agrega tus estilos aquí */
+</style>
 
 <!-- <style scoped>
 body,
