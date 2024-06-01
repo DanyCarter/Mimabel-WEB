@@ -241,7 +241,7 @@ html {
 .location-text p {
   margin-top: 1em;
   line-height: 1.6;
-  color: #000000;
+  color: #000000; 
   font-size: 1.3em;
 }
 
