@@ -40,12 +40,28 @@
   @pole-shadow: #DF9D41;
   
   .error-message {
+  margin: 10px;
     font-size: 2rem;
     color: @red;
     text-shadow: 2px 2px @dark-red;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
+    margin-top: 30px ;
+    padding: 0 10%;
+    box-sizing: border-box;
+  
+    @media (min-width: 768px) {
+      font-size: 3rem;
+      margin-top: 50px;
+      padding: 0 20%;
+    }
+  
+    @media (min-width: 1024px) {
+      font-size: 4rem;
+      margin-top: 120px;
+      padding: 0 30%;
+    }
   }
   
   html, body {
@@ -391,5 +407,27 @@
       bottom: 4px;
     }
   }
+
+  @media (max-width: 700px) {
+  .hover {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .hover {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .error-message{
+    font-size: 1.7rem;
+}
+}
+
+
   </style>
   
