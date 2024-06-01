@@ -46,20 +46,33 @@
       </div>
     </section>
 
-    <GoogleMap
-      :api-key="YOUR_GOOGLE_MAPS_API_KEY"
-      style="width: 100%; height: 500px"
-      :center="center"
-      :zoom="15"
-    >
-      <Marker :position="center" />
-    </GoogleMap>
+    <section class="location-info">
+      <div class="location-text">
+        <h2>Nuestra Ubicación</h2>
+        <p>
+          Nos encontramos en el corazón de Villablino, en una ubicación privilegiada y de fácil acceso. 
+          Ven a visitarnos y descubre nuestra amplia selección de productos.
+        </p>
+      </div>
+      <div class="map-container">
+        <GoogleMap
+          :api-key="YOUR_GOOGLE_MAPS_API_KEY"
+          style="width: 100%; height: 400px"
+          :center="center"
+          :zoom="15"
+          @map-loaded="onMapLoaded"
+        >
+          <Marker v-if="markerOptions" :position="center" :options="markerOptions" />
+        </GoogleMap>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import MainNav from '../components/MainNav.vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
+import iconoMapa from '../assets/img/iconoMapa.png';
 
 const YOUR_GOOGLE_MAPS_API_KEY = 'AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs';
 
@@ -68,18 +81,28 @@ export default {
   components: { GoogleMap, Marker, MainNav },
   data() {
     return {
-      center: { lat: 42.9362, lng: -6.3202 },
+      center: { lat: 42.939220207845025, lng: -6.322264840303202 },
+      markerOptions: null,
       YOUR_GOOGLE_MAPS_API_KEY,
     };
+  },
+  methods: {
+    onMapLoaded() {
+      this.markerOptions = {
+        icon: {
+          url: iconoMapa, // Usar la variable importada
+          scaledSize: new google.maps.Size(50, 50), // Ajusta el tamaño del icono
+          origin: new google.maps.Point(0, 0), // El origen de la imagen (0, 0) es la esquina superior izquierda
+          anchor: new google.maps.Point(25, 50) // El punto de anclaje del icono (25, 50) es el centro inferior
+        },
+        title: 'Mimabel',
+      };
+    },
   },
 };
 </script>
 
 <style scoped>
-/* Agrega tus estilos aquí */
-</style>
-
-<!-- <style scoped>
 body,
 html {
   background-color: #ebebec;
@@ -190,74 +213,111 @@ html {
   font-size: 1.3em; /* Ajusta el tamaño de la fuente */
 }
 
+.location-info {
+  display: flex;
+  flex-direction: row; /* Muestra el mapa y el texto en línea */
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  position: relative;
+  top: 100vh;
+  min-height: 100vh;
+  z-index: 2;
+}
+
+.location-text {
+  flex: 1;
+  max-width: 50%; /* Ocupa la mitad izquierda de la pantalla */
+  padding: 20px;
+}
+
+.location-text h2 {
+  margin-top: 0;
+  font-size: 2em;
+  color: #333;
+}
+
+.location-text p {
+  margin-top: 1em;
+  line-height: 1.6;
+  color: #000000;
+  font-size: 1.3em;
+}
+
+.map-container {
+  flex: 1;
+  max-width: 50%; /* Ocupa la mitad derecha de la pantalla */
+  height: 500px;
+  z-index: 3;
+}
 
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
-  .about-us {
+  .about-us,
+  .location-info {
     flex-direction: column; /* Cambia a columna en pantallas pequeñas */
     padding: 20px 10px; /* Reduce el padding */
   }
 
   .image-container,
-  .text-container {
+  .text-container,
+  .location-text,
+  .map-container {
     max-width: 100%; /* Ancho completo */
     padding: 10px 0; /* Reduce el padding */
-    margin: 2em;
   }
 
-  .text-container {
-    margin-top: 10px; /* Reduce la distancia entre la imagen y el texto */
+  .map-container {
+    height: 300px; /* Ajusta la altura del mapa en pantallas pequeñas */
+    width: 100%; /* Asegura que el mapa ocupe el ancho completo del contenedor */
+    margin: 0 auto; /* Centra el mapa horizontalmente */
   }
 
-  .text-container h2 {
-    font-size: 2em; /* Reduce el tamaño de la fuente */
+  .location-text {
+    order: 1; /* Asegura que el texto esté antes del mapa */
   }
 
-  .text-container p {
-    font-size: 1.1em; /* Reduce el tamaño de la fuente */
-  }
-
-  .welcome {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    margin-top: 10px; /* Reduce el margen superior */
+  .map-container {
+    order: 2; /* Asegura que el mapa esté debajo del texto */
   }
 }
 
 @media (max-width: 480px) {
-  .about-us {
+  .about-us,
+  .location-info {
     padding: 5px 5px; /* Reduce el padding aún más */
   }
 
-  .text-container {
+  .text-container,
+  .location-text {
     margin-top: 0px; /* Reduce la distancia entre la imagen y el texto aún más */
     padding: 0 0 0;
-    margin: 1em;
   }
 
-  .text-container h2 {
+  .text-container h2,
+  .location-text h2 {
     font-size: 1.4em; /* Reduce el tamaño de la fuente */
-    margin: 2em;
-    margin-bottom: 1em;
-
   }
 
-  .text-container p {
-    margin: 2em;
-    margin-top: 1em;
-    font-size: 1.3em; /* Ajusta el tamaño de la fuente */
+  .text-container p,
+  .location-text p {
+    font-size: 1.1em; /* Reduce el tamaño de la fuente */
   }
 
-  .image-container{
-    margin-bottom: 1em;
-
+  .map-container {
+    height: 200px; /* Ajusta la altura del mapa en pantallas pequeñas */
+    width: 100%; /* Asegura que el mapa ocupe el ancho completo del contenedor */
+    margin: 0 auto; /* Centra el mapa horizontalmente */
   }
-    
-  .welcome {
-    margin-top: 5px; /* Reduce el margen superior aún más */
+
+  .location-text {
+    order: 1; /* Asegura que el texto esté antes del mapa */
+  }
+
+  .map-container {
+    order: 2; /* Asegura que el mapa esté debajo del texto */
   }
 }
 
 </style>
- -->

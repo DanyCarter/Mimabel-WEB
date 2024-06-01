@@ -1,0 +1,24 @@
+'Log files:
+C:\Users\danie\OneDrive - TuniverS Formación\Escritorio\mimabel-vue\pathtonewcachefolder\_logs\2024-05-30T10_11_41_820Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: @vue/cli-plugin-unit-jest@5.0.8
+Found: @vue/vue3-jest@29.2.6
+node_modules/@vue/vue3-jest
+  dev @vue/vue3-jest@"^29.2.6" from the root project
+
+Could not resolve dependency:
+peerOptional @vue/vue3-jest@"^27.0.0-alpha.3" from @vue/cli-plugin-unit-jest@5.0.8
+node_modules/@vue/cli-plugin-unit-jest
+  dev @vue/cli-plugin-unit-jest@"^5.0.8" from the root project
+
+Conflicting peer dependency: @vue/vue3-jest@27.0.0
+node_modules/@vue/vue3-jest
+  peerOptional @vue/vue3-jest@"^27.0.0-alpha.3" from @vue/cli-plugin-unit-jest@5.0.8
+  node_modules/@vue/cli-plugin-unit-jest
+    dev @vue/cli-plugin-unit-jest@"^5.0.8" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

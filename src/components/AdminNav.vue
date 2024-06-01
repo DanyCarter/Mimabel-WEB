@@ -65,8 +65,5 @@ onMounted(async () => {
   </Link>
 </nav>
 
-
-
-
   </header>
 </template>
