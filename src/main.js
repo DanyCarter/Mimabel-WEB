@@ -12,6 +12,19 @@ import config from '../formkit.config'
 import App from './App.vue'
 import router from './router'
 
+import axios from 'axios'
+
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 403) {
+      // Redirigir a la página de error 403
+      router.push({ name: 'Error403' });
+    }
+    return Promise.reject(error);
+  }
+);
+
 const app = createApp(App)
 
 app.use(VueFire, {

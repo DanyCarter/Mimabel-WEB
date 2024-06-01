@@ -4,6 +4,7 @@ import AdminLayout from '../views/admin/AdminLayout.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
+import Error403 from '@/components/Error403.vue';
 
 const routes = [
   {
@@ -59,6 +60,11 @@ const routes = [
     name: 'Login',
     component: () => import('../components/Login.vue'),
   },
+  {
+    path: '/403',
+    name: 'Error403',
+    component: Error403,
+  },
 ];
 
 const router = createRouter({
@@ -70,9 +76,18 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth) {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        next();
+        // Verificar permisos adicionales si es necesario
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userData = userDoc.data();
+        
+        // Aquí puedes verificar roles o permisos específicos
+        if (userData && userData.role === 'admin') {
+          next();
+        } else {
+          next({ name: 'Error403' });
+        }
       } else {
         next('/login');
       }
