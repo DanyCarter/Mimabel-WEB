@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
-    "start": "serve -s dist"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@formkit/themes": "^1.6.3",
