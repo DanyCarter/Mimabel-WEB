@@ -23,8 +23,19 @@
         </div>
       </div>
     </div>
+    <button class="back-button" @click="goHome">Volver a inicio</button>
   </template>
   
+  <script>
+  export default {
+    methods: {
+      goHome() {
+        window.location.href = '/';
+      }
+    }
+  }
+  </script>
+
   <style lang="less" scoped>
   @red: #CF352C;
   @dark-red: #9C0502;
@@ -425,7 +436,53 @@
   
   .error-message{
     font-size: 1.7rem;
+    margin-top: 3px;
 }
+}
+
+@media (min-width: 768px)  {
+  .back-button {
+    width: 150px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-height: 1200px)  {
+  .back-button {
+    width: 150px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .back-button {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+
+.back-button {
+  position: absolute;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #d1972c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.back-button:hover {
+  background-color: #b37c18;
 }
 
 
