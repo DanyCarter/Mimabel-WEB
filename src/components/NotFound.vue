@@ -39,48 +39,57 @@ export default {
 
 .four_zero_four_bg {
     background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 500px; /* Aumenta la altura del contenedor */
+    height: 500px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     display: flex;
-    align-items: flex-start; /* Ajusta la posición del contenido dentro del contenedor */
+    align-items: flex-start;
     justify-content: center;
-    padding-top: 50px; /* Añade un poco de espacio en la parte superior */
+    padding-top: 50px;
 }
 
 .four_zero_four_bg h1 {
-    font-size: 100px; /* Aumenta el tamaño del texto */
-    margin-top: 0; /* Elimina el margen superior */
+    font-size: 100px;
+    margin-top: 0;
 }
 
 .contant_box_404 {
-    margin-top: -30px; /* Ajusta el margen superior del cuadro de contenido */
+    margin-top: -30px;
 }
 
 .link_404 {
     color: #fff !important;
-    padding: 15px 30px; /* Aumenta el tamaño del botón */
+    padding: 15px 30px;
     background: #39ac31;
     margin: 20px 0;
     display: inline-block;
-    font-size: 18px; /* Aumenta el tamaño del texto del botón */
+    font-size: 18px;
+    transition: background 0.3s, transform 0.3s;
 }
 
-/* Estilos para resoluciones grandes (PC o televisión) */
+.link_404:hover {
+    background: #2e8b2d;
+}
+
+.link_404:active {
+    background: #267224;
+    transform: scale(0.98);
+}
+
 @media (min-width: 1024px) {
     .four_zero_four_bg {
-        height: 700px; /* Ajusta la altura del contenedor */
-        padding-top: 0; /* Elimina el espacio en la parte superior */
+        height: 700px;
+        padding-top: 0;
     }
 
     .four_zero_four_bg h1 {
-        font-size: 150px; /* Aumenta el tamaño del texto */
+        font-size: 150px;
         margin-top: -70px;
     }
 
     .contant_box_404 {
-        margin-top: 20px; /* Ajusta el margen superior del cuadro de contenido */
+        margin-top: 20px;
     }
 
     .contant_box_404 h3 {
@@ -95,29 +104,28 @@ export default {
     }
 
     .contant_box_404 p {
-        font-size: 29px; /* Aumenta el tamaño del texto del párrafo */
+        font-size: 29px;
     }
 }
 
-/* Estilos para resoluciones pequeñas (tablet o móvil) */
 @media (max-width: 1024px) {
     .four_zero_four_bg {
-        height: 500px; /* Ajusta la altura del contenedor */
+        height: 500px;
     }
 
     .four_zero_four_bg h1 {
-        font-size: 100px; /* Ajusta el tamaño del texto */
+        font-size: 100px;
     }
 
     .contant_box_404 h3 {
-        font-size: 25px; /* Ajusta el tamaño del texto del título */
-        color: black; /* Ajusta el color del texto del título */
-        text-shadow: none; /* Elimina la sombra del texto del título */
-        position: static; /* Mantiene la posición estática */
+        font-size: 25px;
+        color: black;
+        text-shadow: none;
+        position: static;
     }
 
     .contant_box_404 p {
-        font-size: 18px; /* Ajusta el tamaño del texto del párrafo */
+        font-size: 18px;
     }
 }
 </style>
