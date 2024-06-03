@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MainNav :showCategories="false" :showConocenosButton="false" />
+    <MainNav />
 
     <section class="fixed-video">
       <video autoplay muted loop id="background-video">
@@ -90,10 +90,10 @@ export default {
     onMapLoaded() {
       this.markerOptions = {
         icon: {
-          url: iconoMapa,
-          scaledSize: new google.maps.Size(50, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(25, 50)
+          url: iconoMapa, // Usar la variable importada
+          scaledSize: new google.maps.Size(50, 50), // Ajusta el tamaño del icono
+          origin: new google.maps.Point(0, 0), // El origen de la imagen (0, 0) es la esquina superior izquierda
+          anchor: new google.maps.Point(25, 50) // El punto de anclaje del icono (25, 50) es el centro inferior
         },
         title: 'Mimabel',
       };
@@ -110,7 +110,7 @@ html {
   padding: 0;
   font-family: Arial, sans-serif;
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Evita desplazamiento horizontal */
 }
 
 #app {
@@ -147,11 +147,11 @@ html {
 }
 
 .fixed-video {
-  position: fixed;
+  position: fixed; /* Fija el video en la parte superior */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh; /* Ocupa toda la pantalla */
   z-index: 1;
   overflow: hidden;
 }
@@ -170,51 +170,52 @@ html {
 
 .about-us {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Asegura que la imagen y el texto estén uno al lado del otro */
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 40px 20px; /* Aumenta el padding para más espacio */
   background-color: #f4f4f4;
   position: relative;
-  top: 100vh;
-  min-height: 100vh;
+  top: 100vh; /* Posiciona esta sección justo después del video */
+  min-height: 100vh; /* Asegura que ocupe toda la pantalla */
   z-index: 2;
 }
 
 .image-container {
   flex: 1;
-  max-width: 45%;
-  padding: 10px;
+  max-width: 45%; /* Ajusta el ancho máximo para dar más espacio al texto */
+  padding: 10px; /* Añade padding para separación */
 }
 
 .image-container img {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 10px; /* Añade bordes redondeados a la imagen */
 }
 
 .text-container {
   flex: 1;
-  max-width: 55%;
+  max-width: 55%; /* Ajusta el ancho máximo para dar más espacio al texto */
   padding: 20px;
 }
 
 .text-container h2 {
   margin-top: 0;
-  font-size: 2em;
-  color: #333;
+  font-size: 2em; /* Ajusta el tamaño de la fuente */
+  color: #333; /* Cambia el color del texto */
 }
 
 .text-container p {
-  margin-top: 1em;
-  line-height: 1.6;
-  color: #000000;
-  font-size: 1.3em;
+  font-family: bold;
+  margin-top: 1em; /* Añade margen superior para separación entre párrafos */
+  line-height: 1.6; /* Aumenta el espaciado entre líneas */
+  color: #000000; /* Cambia el color del texto para mayor legibilidad */
+  font-size: 1.3em; /* Ajusta el tamaño de la fuente */
 }
 
 .location-info {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Muestra el mapa y el texto en línea */
   align-items: flex-start;
   justify-content: space-between;
   padding: 40px 20px;
@@ -227,7 +228,7 @@ html {
 
 .location-text {
   flex: 1;
-  max-width: 50%;
+  max-width: 50%; /* Ocupa la mitad izquierda de la pantalla */
   padding: 20px;
 }
 
@@ -240,81 +241,83 @@ html {
 .location-text p {
   margin-top: 1em;
   line-height: 1.6;
-  color: #000000;
+  color: #000000; 
   font-size: 1.3em;
 }
 
 .map-container {
   flex: 1;
-  max-width: 50%;
+  max-width: 50%; /* Ocupa la mitad derecha de la pantalla */
   height: 500px;
   z-index: 3;
 }
 
+/* Media Queries para Responsividad */
 @media (max-width: 768px) {
   .about-us,
   .location-info {
-    flex-direction: column;
-    padding: 20px 10px;
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    padding: 20px 10px; /* Reduce el padding */
   }
 
   .image-container,
   .text-container,
   .location-text,
   .map-container {
-    max-width: 100%;
-    padding: 10px 0;
+    max-width: 100%; /* Ancho completo */
+    padding: 10px 0; /* Reduce el padding */
   }
 
   .map-container {
-    height: 300px;
-    width: 100%;
-    margin: 0 auto;
+    height: 300px; /* Ajusta la altura del mapa en pantallas pequeñas */
+    width: 100%; /* Asegura que el mapa ocupe el ancho completo del contenedor */
+    margin: 0 auto; /* Centra el mapa horizontalmente */
   }
 
   .location-text {
-    order: 1;
+    order: 1; /* Asegura que el texto esté antes del mapa */
   }
 
   .map-container {
-    order: 2;
+    order: 2; /* Asegura que el mapa esté debajo del texto */
   }
 }
 
 @media (max-width: 480px) {
   .about-us,
   .location-info {
-    padding: 5px 5px;
+    padding: 5px 5px; /* Reduce el padding aún más */
   }
 
   .text-container,
   .location-text {
-    margin-top: 0px;
-    padding: 0;
+    margin-top: 0px; /* Reduce la distancia entre la imagen y el texto aún más */
+    padding: 0 0 0;
   }
 
   .text-container h2,
   .location-text h2 {
-    font-size: 1.4em;
+    font-size: 1.4em; /* Reduce el tamaño de la fuente */
   }
 
   .text-container p,
   .location-text p {
-    font-size: 1.1em;
+    font-size: 1.1em; /* Reduce el tamaño de la fuente */
   }
 
   .map-container {
-    height: 200px;
-    width: 100%;
-    margin: 0 auto;
+    height: 200px; /* Ajusta la altura del mapa en pantallas pequeñas */
+    width: 100%; /* Asegura que el mapa ocupe el ancho completo del contenedor */
+    margin: 0 auto; /* Centra el mapa horizontalmente */
   }
 
   .location-text {
-    order: 1;
+    order: 1; /* Asegura que el texto esté antes del mapa */
   }
 
   .map-container {
-    order: 2;
+    order: 2; /* Asegura que el mapa esté debajo del texto */
   }
 }
+
 </style>

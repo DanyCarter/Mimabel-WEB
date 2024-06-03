@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ShopView from '../views/ShopView.vue';
 import AdminLayout from '../views/admin/AdminLayout.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 import Error403 from '@/components/Error403.vue';
+import NotFound from '@/components/NotFound.vue'; // Importa el componente 404
 
 const routes = [
   {
@@ -64,6 +65,11 @@ const routes = [
     path: '/403',
     name: 'Error403',
     component: Error403,
+  },
+  {
+    path: '/:catchAll(.*)', // Ruta para manejar cualquier URL no definida
+    name: 'NotFound',
+    component: NotFound,
   },
 ];
 
