@@ -39,7 +39,3 @@
   });
   </script>
   
-  <style scoped>
-  /* Agrega estilos específicos para esta vista si es necesario */
-  </style>
-  
