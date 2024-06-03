@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #ebebec; /* Fondo blanco */
+}
+.full-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2 {
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #4070f4;
+}
+
+.input-box {
+  height: 52px;
+  margin: 18px 0;
+}
+.input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid {
+  border-color: #4070f4;
+}
+.input-box.button input {
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #4070f4;
+  cursor: pointer;
+}
+.input-box.button input:hover {
+  background: #0e4bf1;
+}
+.error-message {
+  color: red;
+  font-size: 1em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.login-forget {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.opacity {
+  opacity: 0.9;
+}
+
+.login {
+  background-color: #234ac9;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  width: 122px;
+}
+
+.login:hover {
+  background-color: #08335e;
+  transform: scale(1.05);
+}
+
+.back {
+  background-color: #14519b;
+  color: #ffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #0e3e6f;
+  transform: scale(1.05);
+}
