@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import ShopView from '../views/ShopView.vue';
 import AdminLayout from '../views/admin/AdminLayout.vue';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -74,7 +74,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
