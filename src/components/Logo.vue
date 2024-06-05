@@ -3,6 +3,6 @@
   </template>
   
   <script setup>
-  import logo from '../assets/img/MIMABEL.webp';
+  import logo from '/img/MIMABEL.webp';
   </script>
   

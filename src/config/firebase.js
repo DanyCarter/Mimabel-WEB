@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDpvp2iGRthK7mDzAgab-Xs237-HVjy4PE",
+  authDomain: "",
+  projectId: "posvue-5faa0",
+  storageBucket: "",
+  messagingSenderId: "732919111902",
+  appId: "1:732919111902:web:85309f13d3bce46835a24f",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

@@ -4,14 +4,14 @@
 
     <section class="fixed-video">
       <video autoplay muted loop id="background-video">
-        <source src="../../src/assets/videos/villablino.mp4" type="video/mp4" />
+        <source src="/videos/villablino.mp4" type="video/mp4" />
         Tu navegador no soporta el video.
       </video>
     </section>
 
     <section class="about-us">
       <div class="image-container">
-        <img src="../../src/assets/img/Mimabel.png" alt="Imagen Mimabel" />
+        <img src="/img/Mimabel.png" alt="Imagen Mimabel" />
       </div>
       <div class="text-container">
         <h2 class="welcome mb-4 text-4xl font-extrabold text-gray-900 dark:text-white md:text-10xl lg:text-7xl">
