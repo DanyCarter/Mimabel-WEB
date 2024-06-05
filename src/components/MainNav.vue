@@ -95,20 +95,22 @@ const menuOpen = ref(false);
       <!-- Botones de categorías y otros botones -->
       <div v-if="showButtons" class="hidden-below-1400 lg:flex gap-5 text-white items-center">
         <div class="flex items-center gap-4">
-          <button
-            v-for="category in products.categories"
-            :key="category.id"
-            :class="[
-              'py-2 px-4 rounded mx-2',
-              products.selectedCategory === category.id
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 text-black',
-              'hover:bg-indigo-500 transition-colors',
-            ]"
-            @click="selectCategory(category.id)"
-          >
-            {{ category.name }}
-          </button>
+          <RouterLink to="/">
+            <button
+              v-for="category in products.categories"
+              :key="category.id"
+              :class="[
+                'py-2 px-4 rounded mx-2',
+                products.selectedCategory === category.id
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-gray-200 text-black',
+                'hover:bg-indigo-500 transition-colors',
+              ]"
+              @click="selectCategory(category.id)"
+            >
+              {{ category.name }}
+            </button>
+          </RouterLink>
         </div>
         <RouterLink to="/conocenos">
           <button
