@@ -83,7 +83,7 @@ const menuOpen = ref(false);
       </RouterLink>
 
       <!-- Botón de menú hamburguesa -->
-      <div v-if="!props.hideHamburger && !showButtons" class="movil lg:hidden">
+      <div v-if="!props.hideHamburger && !showButtons" class="lg:hidden">
         <input type="checkbox" id="btn_menu" v-model="menuOpen" class="menu-checkbox hidden">
         <label for="btn_menu" class="menu-btn">
           <span class="menu-btn__line"></span>
@@ -128,29 +128,29 @@ const menuOpen = ref(false);
         <ul class="container_menu flex_column">
           <li v-for="category in products.categories" :key="category.id">
             <button
-              @click="selectCategory(category.id); menuOpen = false"
+              @click="this.$router.push('/'); selectCategory(category.id); menuOpen = false;"
               class="menu-link"
             >
               {{ category.name }}
             </button>
           </li>
           <li>
-            <RouterLink to="/conocenos" class="menu-link" @click="menuOpen = false">
+            <RouterLink to="/conocenos" class="menu-link menu-link-extra" @click="menuOpen = false">
               Conócenos
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/register" class="menu-link" @click="menuOpen = false">
+            <RouterLink to="/register" class="menu-link menu-link-extra" @click="menuOpen = false">
               Register
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/login" class="menu-link" @click="menuOpen = false">
+            <RouterLink to="/login" class="menu-link menu-link-extra" @click="menuOpen = false">
               Login
             </RouterLink>
           </li>
           <li v-if="isAdmin">
-            <RouterLink to="/admin/productos" class="menu-link" @click="menuOpen = false">
+            <RouterLink to="/admin/productos" class="menu-link menu-link-extra" @click="menuOpen = false">
               Administrar
             </RouterLink>
           </li>

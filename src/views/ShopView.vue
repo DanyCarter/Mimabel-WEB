@@ -10,6 +10,20 @@ const products = useProductsStore();
 const { filteredProducts } = storeToRefs(products);
 
 const noResults = computed(() => filteredProducts.value.length === 0);
+
+
+
+const search_text = defineModel({ default: "" })
+
+const searched_products = computed(() => {
+  let array = []
+  for (const product of filteredProducts.value) {
+    if(search_text.value == "" || product.name.toLowerCase().includes(search_text.value.toLowerCase())) {
+      array.push(product);
+    }
+  } 
+  return array;
+})
 </script>
 
 <template>
@@ -18,16 +32,15 @@ const noResults = computed(() => filteredProducts.value.length === 0);
   <main class="pt-10 lg:flex lg:h-screen lg:overflow-y-hidden">
     <div class="lg:w-2/3 lg:screen lg:overflow-y-scroll py-24 px-10">
       <p v-if="noResults" class="text-center text-4xl">No hay Productos</p>
-
-      <div 
-        v-else
-        class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5"
-      >
-        <ProductCard
-          v-for="product in filteredProducts"
-          :key="product.id"
-          :product="product"
-        />
+      <div v-else>
+        <input class="search-bar" v-model="search_text" type="text" placeholder="BUSCAR">
+        <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+          <ProductCard
+            v-for="product in searched_products"
+            :key="product.id"
+            :product="product"
+          />
+        </div>
       </div>
     </div>
 
@@ -36,3 +49,10 @@ const noResults = computed(() => filteredProducts.value.length === 0);
     </aside>
   </main>
 </template>
+
+<style scoped>
+.search-bar {
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+</style>

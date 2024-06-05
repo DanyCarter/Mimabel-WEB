@@ -27,7 +27,7 @@
   }
   
   .menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(5px, 9px);
   }
   
   .menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(2) {
@@ -35,7 +35,7 @@
   }
   
   .menu-checkbox:checked + .menu-btn .menu-btn__line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(5px, -9px);
   }
   
   .container_flex {
@@ -120,7 +120,31 @@
     }
   }
   
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+    .container_menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .menu-link {
+      width: 80vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 2px solid white;
+      background-color: transparent;
+      border-radius: 0;
+      transition: .4s;
+    }
+    .menu-link:hover {
+      width: 88vw; 
+      background-color:rgba(255, 255, 255, 0.03);
+    }
+    .menu-link-extra {
+      border: 2px solid white;
+    }
+
     .navbar-container {
       display: block;
       position: relative;
@@ -162,5 +186,6 @@
     .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
       transform: rotate(-35deg);
     }
+
   }
   

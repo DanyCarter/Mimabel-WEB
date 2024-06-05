@@ -16,5 +16,6 @@ export default defineConfig({
       },
     },
   },
-  base: "./"
+  base: "./",
+  outputDir: 'docs'
 });
