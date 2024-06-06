@@ -214,7 +214,7 @@
   border-bottom: 4px solid rgba(255, 196, 0, 0.7);
   margin: 0;
   width: 8rem;
-  color: rgba(255, 196, 0, 1);
+  color: rgba(255, 196, 0, 1); 
 }
 
 .nav-bar-button-out:hover {
