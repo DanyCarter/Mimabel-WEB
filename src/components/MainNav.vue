@@ -5,7 +5,9 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useProductsStore } from '../stores/products';
 import Link from './Link.vue';
 import Logo from './Logo.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
   showButtons: {
@@ -128,7 +130,7 @@ const menuOpen = ref(false);
         <ul class="container_menu flex_column">
           <li v-for="category in products.categories" :key="category.id">
             <button
-              @click="this.$router.push('/'); selectCategory(category.id); menuOpen = false;"
+              @click="() => { router.push('/'); selectCategory(category.id); menuOpen = false; }"
               class="menu-link"
             >
               {{ category.name }}
