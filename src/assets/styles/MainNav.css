@@ -189,3 +189,37 @@
 
   }
   
+
+.nav-bar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  border-bottom: 4px solid transparent;
+  margin: 0 1.5rem;
+  width: 5rem;
+  transition: .4s;
+  font-weight: bold;
+}
+.nav-bar-button:hover {
+  border-bottom: 4px solid rgba(255, 255, 255, 0.7);
+  margin: 0;
+  width: 8rem;
+}
+.nav-bar-selected {
+  border-bottom: 4px solid white;
+}
+
+.nav-bar-button-admin:hover {
+  border-bottom: 4px solid rgba(255, 196, 0, 0.7);
+  margin: 0;
+  width: 8rem;
+  color: rgba(255, 196, 0, 1);
+}
+
+.nav-bar-button-out:hover {
+  border-bottom: 4px solid rgba(199, 1, 1, 0.7);
+  margin: 0;
+  width: 8rem;
+  color: rgb(200, 0, 0);
+}

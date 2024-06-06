@@ -77,7 +77,7 @@ const menuOpen = ref(false);
 
 <template>
   <header
-    class="px-10 py-5 bg-gray-700 flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between absolute top-0 w-full z-10"
+    class="px-10 bg-gray-700 flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between absolute top-0 w-full z-10"
   >
     <div class="flex items-center gap-5">
       <RouterLink to="/">
@@ -97,30 +97,22 @@ const menuOpen = ref(false);
       <!-- Botones de categorías y otros botones -->
       <div v-if="showButtons" class="hidden-below-1400 lg:flex gap-5 text-white items-center">
         <div class="flex items-center gap-4">
-          <RouterLink to="/">
-            <button
+            <RouterLink to="/"
               v-for="category in products.categories"
               :key="category.id"
               :class="[
-                'py-2 px-4 rounded mx-2',
+                'nav-bar-button',
                 products.selectedCategory === category.id
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-200 text-black',
-                'hover:bg-indigo-500 transition-colors',
+                  ? 'nav-bar-selected'
+                  : '',
+                'transition-colors',
               ]"
               @click="selectCategory(category.id)"
             >
               {{ category.name }}
-            </button>
           </RouterLink>
         </div>
-        <RouterLink to="/conocenos">
-          <button
-            class="py-2 px-4 rounded bg-green-500 text-white hover:bg-green-400 transition-colors mx-2"
-          >
-            Conócenos
-          </button>
-        </RouterLink>
+        
       </div>
     </div>
 
@@ -167,22 +159,32 @@ const menuOpen = ref(false);
 
     <nav v-if="showButtons" class="hidden-below-1400 lg:flex items-center gap-4">
       <p class="hidden" v-if="authState">{{ email }}</p>
+      <RouterLink to="/conocenos">
+        <button class="relative border hover:border-sky-600 duration-500 group cursor-pointer text-sky-50  overflow-hidden h-14 w-56 rounded-md bg-sky-800 p-2 flex justify-center items-center font-extrabold">
+          <div class="absolute z-10 w-48 h-48 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-sky-900 delay-150 group-hover:delay-75"></div>
+          <div class="absolute z-10 w-40 h-40 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-sky-800 delay-150 group-hover:delay-100"></div>
+          <div class="absolute z-10 w-32 h-32 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-sky-700 delay-150 group-hover:delay-150"></div>
+          <div class="absolute z-10 w-24 h-24 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-sky-600 delay-150 group-hover:delay-200"></div>
+          <div class="absolute z-10 w-16 h-16 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-sky-500 delay-150 group-hover:delay-300"></div>
+          <p class="z-10">Conócenos</p>
+        </button>
+      </RouterLink>
       <RouterLink v-if="!authState" to="/register">
-        <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
+        <button class="nav-bar-button text-white">
           Register
         </button>
       </RouterLink>
       <RouterLink v-if="!authState" to="/login">
-        <button class="py-2 px-4 rounded bg-blue-500 text-white hover:bg-blue-400 transition-colors mx-2">
+        <button class="nav-bar-button text-white">
           Login
         </button>
       </RouterLink>
       <RouterLink v-if="isAdmin" to="/admin/productos">
-        <button class="py-2 px-4 rounded bg-yellow-500 text-white hover:bg-yellow-400 transition-colors mx-2">
+        <button class="nav-bar-button nav-bar-button-admin text-white">
           Administrar
         </button>
       </RouterLink>
-      <button v-if="authState" @click="logout" class="py-2 px-4 rounded bg-red-500 text-white hover:bg-red-400 transition-colors mx-2">
+      <button v-if="authState" @click="logout" class="nav-bar-button nav-bar-button-out text-white">
         Log out
       </button>
     </nav>
