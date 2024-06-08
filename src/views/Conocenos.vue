@@ -48,11 +48,17 @@
 
     <section class="location-info">
       <div class="location-text">
-        <h2>Nuestra Ubicación</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Donde Encontrarnos</h2>
         <p>
           Nos encontramos en el corazón de Villablino, en una ubicación privilegiada y de fácil acceso. 
-          Ven a visitarnos y descubre nuestra amplia selección de productos.
-        </p>
+          Ven a visitarnos y descubre nuestra amplia selección de productos ecologicos, con los mejores distribuidores.
+          </p>
+          <p>
+          Destacamos por nuestra preocupacion por el medio hambiente, preocupandonos de encontrar los mejores distribuidores y reduciendo el papel
+          </p>
+          <p>
+            Todos los pedidos seran pagados a contrareembolso!! Facilitando las anulaciones, si deseas anular un pedido contacte con nosotros a traves de nuestras RRSS o tlfn.
+          </p>
       </div>
       <div class="map-container">
         <GoogleMap
