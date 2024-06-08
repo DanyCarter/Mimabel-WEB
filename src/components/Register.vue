@@ -1,4 +1,4 @@
-<template>
+  <template>
   <MainNav :showButtons="false" :hideHamburger="true" />
   <div class="full-page">
     <div class="wrapper">

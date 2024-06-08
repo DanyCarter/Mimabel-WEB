@@ -34,16 +34,16 @@ onMounted(async () => {
 <template>
   <header class="px-10 py-5 bg-gray-700 flex justify-between absolute top-0 w-full z-10">
     <div>
-      <Logo />
+      <Logo class="logo"/>
     </div>
 
-    <nav class="flex items-center">
+    <nav class="flex items-center space-x-4 nav-item">
   <RouterLink
     v-if="isAdmin"
     :to="{ name: 'products' }"
     class="rounded text-white font-bold p-2 space-x-4"
     :class="{ 'border-b-2 border-white': $route.name === 'products' }"
-    style="position: absolute; right: 250px;"
+    style="position: absolute; right: 180px;"
   >
     Productos    
   </RouterLink>
@@ -52,7 +52,7 @@ onMounted(async () => {
     :to="{ name: 'ventas' }"
     class="rounded text-white font-bold p-2 space-x-4"
     :class="{ 'border-b-2 border-white': $route.name === 'ventas' }"
-    style="position: absolute; right: 350px;"
+    style="position: absolute; right: 300px;"
   >
     Ventas
   </RouterLink>
@@ -60,7 +60,7 @@ onMounted(async () => {
     to="shop"
     class="rounded text-white font-bold p-2"
     :class="{ 'border-b-2 border-white': $route.name === 'shop' }"
-    style="position: absolute; right: 100px;"
+    style="position: absolute; right: 20px;"
   >
     Tienda
   </Link>
@@ -68,3 +68,28 @@ onMounted(async () => {
 
   </header>
 </template>
+
+<style>
+.header-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+}
+
+
+
+@media (max-width: 500px) {
+.logo{
+  visibility: hidden;
+}
+
+.nav-item {
+  right: -10px; 
+    display: flex; /* Asegúrate de que los elementos hijos usen flexbox */
+    flex-direction: row; /* Mantén los elementos en una fila */
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+} 
+</style>
+

@@ -22,13 +22,14 @@ const searched_products = computed(() => {
 
 
 <template>
-    <div>
+    <div class="products-view">
         <Link
             to="new-product"
+            class="new-product-button"
             >
                 Nuevo Producto
         </Link>
-        <h1 class="text-4xl font-black my-10">Productos</h1>
+        <h1 class="text-4xl font-black my-10 product-title">Productos</h1>
 
         <p v-if="products.noResults">No hay resultados</p>
 
@@ -52,4 +53,28 @@ const searched_products = computed(() => {
   width: 100%;
   margin-bottom: 1.6rem;
 }
+
+
+
+.new-product-button {
+  position: fixed;
+ /*  right: 10.5px;  */
+ right: 50%;
+}
+
+@media (max-width: 500px) {
+  .new-product-button {
+    align-items: center
+  }
+
+  .product-title {
+    visibility: hidden;
+  }
+
+  .products-view .main-logo {
+    visibility: hidden;
+  }
+
+
+} 
 </style>

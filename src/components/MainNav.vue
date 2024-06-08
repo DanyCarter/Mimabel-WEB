@@ -82,7 +82,7 @@ const menuOpen = ref(false);
     <div class="flex items-center gap-5">
       <RouterLink to="/">
         <Logo />
-      </RouterLink>
+            </RouterLink>
 
       <!-- Botón de menú hamburguesa -->
       <div v-if="!props.hideHamburger && !showButtons" class="lg:hidden">
