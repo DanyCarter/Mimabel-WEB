@@ -6,6 +6,9 @@ import ProductCard from '../components/ProductCard.vue';
 import ShoppingCart from '../components/ShoppingCart.vue';
 import { useProductsStore } from '../stores/products';
 
+
+
+
 const products = useProductsStore();
 const { filteredProducts } = storeToRefs(products);
 
@@ -24,6 +27,7 @@ const searched_products = computed(() => {
   } 
   return array;
 })
+
 </script>
 
 <template>

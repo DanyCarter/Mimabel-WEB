@@ -26,6 +26,7 @@
       <div class="theme-btn-container"></div>
     </section>
   </div>
+  <Footer />
 </template>
 
 <script>
@@ -34,10 +35,12 @@ import { useRouter } from 'vue-router';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import MainNav from './MainNav.vue'; 
+import Footer from './Footer.vue';
 
 export default {
   components: {
     MainNav,
+    Footer,
   },
   setup() {
     const email = ref('');

@@ -80,6 +80,7 @@ import MainNav from '../components/MainNav.vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
 import iconoMapa from '/img/iconoMapa.png';
 
+
 const YOUR_GOOGLE_MAPS_API_KEY = 'AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs';
 
 export default {

@@ -1,4 +1,4 @@
-  <template>
+<template>
   <MainNav :showButtons="false" :hideHamburger="true" />
   <div class="full-page">
     <div class="wrapper">
@@ -31,19 +31,22 @@
       </form>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore , doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 import MainNav from './MainNav.vue'; 
+import Footer from './Footer.vue';
 
 export default {
   components: {
     MainNav,
+    Footer,  
   },
   setup() {
     const firstName = ref('');
@@ -110,7 +113,6 @@ export default {
     const goBack = () => {
       router.push('/');
     };
-
 
     return {
       firstName,
