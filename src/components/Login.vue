@@ -24,9 +24,9 @@
         </div>
       </div>
       <div class="theme-btn-container"></div>
+    <Footer />
     </section>
   </div>
-  <Footer />
 </template>
 
 <script>
@@ -107,4 +107,4 @@ export default {
 };
 </script>
 
-<style src="../assets/styles/Login.css" scoped></style>
+<style src="../assets/styles/Login.css" scoped></style> 

@@ -1,7 +1,8 @@
-export const formatCurrency = amount => Number(amount).toLocaleString('en-US', {
+export const formatCurrency = amount => Number(amount).toLocaleString('es-ES', {
     style: 'currency',
-    currency: 'USD'
-})
+    currency: 'EUR'
+});
+
 
 /* Para conseguir la fecha */
 export const getCurrentDate = () => {

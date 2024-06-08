@@ -68,20 +68,7 @@
     color: white;
   }
   
-  .menu-link {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 5px 0;
-    background-color: #1f2937;
-  }
-  
-  .menu-link:hover {
-    background-color: #4b5563;
-    color: white;
-  }
+ 
   
   .flex_column {
     display: flex;
@@ -110,7 +97,7 @@
   }
   
   /* Mostrar el botón de menú hamburguesa y ocultar los botones de navegación en pantallas pequeñas */
-  @media (max-width: 1400px) {
+  @media (max-width: 1500px) {
     .hidden-below-1400 {
       display: none;
     }
@@ -120,7 +107,7 @@
     }
   }
   
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
     .container_menu {
       display: flex;
       flex-direction: column;

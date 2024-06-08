@@ -51,16 +51,13 @@
     data.images.forEach(fileItem => {
       const storageRef = ref(storage, `products/${fileItem.name}`);
       
-      // Upload the file to Firebase Storage
       const uploadTask = uploadBytesResumable(storageRef, fileItem.file);
 
-      // Monitor the upload progress and retrieve the download URL
       uploadTask.on('state_changed', snapshot => {
-        // Upload progress can be monitored here
       }, error => {
         console.log(error)
       }, () => {
-        // Upload is complete, get the download URL
+
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           urls.push(downloadURL);
           if (urls.length === data.images.length) {
