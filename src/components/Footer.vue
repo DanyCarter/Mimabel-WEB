@@ -85,12 +85,12 @@ body, html {
 footer {
   background-color: #1f2937;
   width: 100%;
-
   font-size: smaller;
   overflow: hidden;
   transition: all 0.7s;
-  position: fixed; /* Fija el footer en la parte inferior de la página */
+  position: fixed; 
   bottom: 0;
+  z-index: 1000;
 }
 
 .page-footer {

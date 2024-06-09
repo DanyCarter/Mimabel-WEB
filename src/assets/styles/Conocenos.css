@@ -239,4 +239,8 @@ html {
   .map-container {
     order: 2; /* Asegura que el mapa esté debajo del texto */
   }
+
+.footer {
+  flex-shrink: 0;
+}
 }

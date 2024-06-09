@@ -72,20 +72,24 @@
         </GoogleMap>
       </div>
     </section>
+
+    <Footer />
+
   </div>
 </template>
 
 <script>
 import MainNav from '../components/MainNav.vue';
+import Footer from '../components/Footer.vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
-import iconoMapa from '/img/iconoMapa.png';
+import iconoMapa from '../../public/img/iconoMapa.png';
 
 
 const YOUR_GOOGLE_MAPS_API_KEY = 'AIzaSyC7zFGRqI_5QHc11NAxINkz5tp_6Vfo4gs';
 
 export default {
   name: 'Conocenos',
-  components: { GoogleMap, Marker, MainNav },
+  components: { GoogleMap, Marker, MainNav, Footer }, 
   data() {
     return {
       center: { lat: 42.939220207845025, lng: -6.322264840303202 },
@@ -97,10 +101,10 @@ export default {
     onMapLoaded() {
       this.markerOptions = {
         icon: {
-          url: iconoMapa, // Usar la variable importada
-          scaledSize: new google.maps.Size(50, 50), // Ajusta el tamaño del icono
-          origin: new google.maps.Point(0, 0), // El origen de la imagen (0, 0) es la esquina superior izquierda
-          anchor: new google.maps.Point(25, 50) // El punto de anclaje del icono (25, 50) es el centro inferior
+          url: iconoMapa, 
+          scaledSize: new google.maps.Size(50, 50), 
+          origin: new google.maps.Point(0, 0), 
+          anchor: new google.maps.Point(25, 50) 
         },
         title: 'Mimabel',
       };
