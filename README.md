@@ -42,7 +42,7 @@ El proyecto está organizado de la siguiente manera:
 
 1. **Clonar el repositorio**:
    ```sh
-   git clone https://github.com/tuusuario/mimabel-web.git
+   git clone https://github.com/DanyCarter/Mimabel-WEB.git
    cd mimabel-web
    ```
 
@@ -64,6 +64,7 @@ El proyecto está organizado de la siguiente manera:
 
 Para desplegar la aplicación en GitHub Pages:
 
+
 1. **Construir la aplicación**:
    ```sh
    npm run build
@@ -81,3 +82,4 @@ Para cualquier pregunta o sugerencia, puedes contactar a:
 
 - **Autor**: Daniel Cadenas Dominguez
 - **Correo Electrónico**: danielcadenas1331@gmail.com
+- **URL Tienda Web**: https://danycarter.github.io/Mimabel-WEB/
