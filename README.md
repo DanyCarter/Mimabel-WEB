@@ -58,7 +58,7 @@ El proyecto está organizado de la siguiente manera:
 4. **Correr la aplicación**:
    ```sh
    npm run serve
-   ```
+   ``` 
 
 ## Despliegue
 

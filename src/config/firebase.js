@@ -18,3 +18,4 @@ const auth = getAuth(firebaseApp);
 const storage = getStorage(firebaseApp);  // Añade esto para inicializar el almacenamiento
 
 export { firebaseApp, db, auth, storage };
+ 

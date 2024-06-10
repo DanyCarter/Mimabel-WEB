@@ -26,7 +26,7 @@ export default function useImage() {
                         url.value = downloadURL
                     })
             }
-        )
+        ) 
     }
 
     const isImageUploaded = computed(() => {
