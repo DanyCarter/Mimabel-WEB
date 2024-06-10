@@ -13,24 +13,23 @@ export default function useImage() {
         const filename = uid() + '.jpg'
         const sRef = storageRef(storage, '/products/' + filename)
 
-        //Para subir el archivo 
+        // Para subir el archivo
         const uploadTask = uploadBytesResumable(sRef, file)
 
         uploadTask.on('state_changed', 
             () => {},
             (error) => console.log(error),
             () => {
-                // La imagen ya esta subida
+                // La imagen ya está subida
                 getDownloadURL(uploadTask.snapshot.ref)
-                    .then( (downloadURL) => {
+                    .then((downloadURL) => {
                         url.value = downloadURL
                     })
             }
-
         )
     }
 
-    const isImageUploaded = computed (() => {
+    const isImageUploaded = computed(() => {
         return url.value ? url.value : null
     })
 
@@ -38,6 +37,5 @@ export default function useImage() {
         url,
         onFileChange,
         isImageUploaded
-
     }
 }
