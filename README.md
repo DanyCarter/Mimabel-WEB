@@ -1,4 +1,3 @@
-```markdown
 # Mimabel - Tienda Web de Ropa y Gafas
 
 Mimabel es una tienda web diseñada para la venta de ropa y gafas, creada para digitalizar y expandir un pequeño comercio local. Este proyecto utiliza tecnologías modernas como Vue 3, JavaScript, CSS y Tailwind CSS para proporcionar una experiencia de usuario fluida y atractiva.
