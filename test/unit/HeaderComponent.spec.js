@@ -1,5 +1,5 @@
 // tests/unit/HeaderComponent.spec.js
-/* 
+
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import VueRouter from 'vue-router';
@@ -49,4 +49,3 @@ describe('HeaderComponent.vue', () => {
     expect(wrapper.vm.$route.name).toBe('shop');
   });
 });
- */
